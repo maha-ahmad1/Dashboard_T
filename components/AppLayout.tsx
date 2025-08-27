@@ -57,7 +57,7 @@ export default function AppLayout() {
           title: "SUPPORT",
           items: [{ icon: HelpCircle, label: "FAQs" }],
         },
-      ]}  // ✅ fixed here
+      ]}  
       onboarding={{
         avatars: [
           { src: "/image1.png", fallback: "HY" },
