@@ -52,7 +52,7 @@ export default function SearchFilter({
             </span>
           )}
         </Button>
-        <div className="hidden md:flex items-center gap-3">
+        <div className=" flex items-center gap-3">
           <Button
             variant="outline"
             className="flex items-center gap-2 text-[#7b7b7b] border-[#d1d1d1] bg-transparent"

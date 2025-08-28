@@ -28,12 +28,10 @@ html {
       </head>
       <body>
         <div className="min-h-screen bg-[#f7f7f7] flex">
-          {/* Fixed Sidebar */}
-          <div className="fixed left-0 top-0 h-full w-64 z-10 hidden md:block">
+          <div className="fixed left-0 top-0 h-full w-64 z-10 ">
             <AppLayout />
           </div>
 
-          {/* Main Content Area with responsive left margin */}
           <div className="flex-1 md:ml-64 min-w-0">{children}</div>
         </div>
       </body>

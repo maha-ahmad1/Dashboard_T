@@ -42,13 +42,13 @@ export function ReusableDashboard<T extends { id: string | number }>({
 
       {tabs && tabs.length > 0 && (
         <div className="bg-white border-[#ebebeb] px-4 lg:px-6 mt-4 sm:mt-8 mb-4 sm:mb-8">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex overflow-x-auto border border-[#ebebeb] bg-[#A3A3A3]/12 rounded-lg h-10 min-w-0">
+          <div className="flex flex-col lg:flex-row lg:items-center sm:justify-between gap-4">
+            <div className="flex border border-[#ebebeb] bg-[#A3A3A3]/12 rounded-lg h-10 min-w-0">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={tab.onClick}
-                  className={`px-6 sm:px-12 py-0 text-sm whitespace-nowrap transition-colors ${
+                  className={`px-4 sm:px-12 py-0 text-sm whitespace-nowrap transition-colors ${
                     tab.active
                       ? "text-[#171717] border border-[#ebebeb] bg-white rounded-lg shadow-sm"
                       : "text-[#7b7b7b] hover:text-[#171717]"

@@ -3,8 +3,9 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Search, Bell } from "lucide-react"
+import { Search, Bell,Menu  } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useSidebarStore } from "@/lib/useSidebarStore";
 
 export interface SearchHeaderProps {
   user: {
@@ -29,9 +30,10 @@ export function SearchHeader({
   showNotifications = true,
   notificationCount = 0,
   className = "",
+  ...props
 }: SearchHeaderProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
-
+  const { toggle ,open} = useSidebarStore()
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen)
   }
@@ -77,7 +79,7 @@ export function SearchHeader({
                   placeholder={searchPlaceholder}
                   value={searchQuery}
                   onChange={handleSearchInputChange}
-                  className="w-40 sm:w-64 px-3 py-2 text-sm border border-[#d1d1d1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7d52f4] focus:border-transparent"
+                  className="w-24 md:w-32  lg:w-60 px-3 py-2 text-sm border border-[#d1d1d1] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7d52f4] focus:border-transparent"
                   autoFocus
                 />
                 {searchQuery && (
@@ -90,19 +92,27 @@ export function SearchHeader({
                 )}
               </div>
             )}
-            <button onClick={handleSearchClick} className="p-1 hover:bg-[#f5f5f5] rounded transition-colors">
+            <button onClick={handleSearchClick} className=" hover:bg-[#f5f5f5] rounded transition-colors">
               <Search className="h-4 w-4 sm:h-5 sm:w-5 text-[#7b7b7b]" />
             </button>
           </div>
 
           {showNotifications && (
             <div className="relative">
-              <Bell className="h-4 w-4 sm:h-5 sm:w-5 text-[#7b7b7b]" />
+              <Bell className="hidden sm:flex h-4 w-4 sm:h-5 sm:w-5 text-[#7b7b7b]" />
               {notificationCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 h-2 w-2 bg-red-500 border border-white rounded-full"></span>
               )}
             </div>
+            
           )}
+            <button
+            onClick={toggle}
+            className=" rounded hover:bg-gray-100 md:hidden"
+            aria-label="Toggle sidebar"
+          >
+               <Menu className="h-5 w-5" />       
+          </button>
         </div>
       </div>
     </div>

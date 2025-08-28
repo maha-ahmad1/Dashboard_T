@@ -3,8 +3,7 @@ import Image from "next/image";
 import SidebarNav from "./SidebarNav";
 import SidebarOnboardingCard from "./SidebarOnboardingCard";
 import SidebarUserProfile from "./SidebarUserProfile";
-import { useState } from "react";
-
+import { useSidebarStore } from "@/lib/useSidebarStore";
 type NavigationItem = {
   icon: React.ComponentType<any>;
   label: string;
@@ -46,29 +45,21 @@ export default function Sidebar({
   onboarding,
   user,
 }: SidebarProps) {
-  const [open, setOpen] = useState(false);
+  const { open, close } = useSidebarStore();
 
   return (
     <>
-      <button
-        aria-label="Open sidebar"
-        onClick={() => setOpen(true)}
-        className="md:hidden fixed top-4 left-4 z-[9999] p-2 bg-white rounded shadow"
-      >
-        <Menu className="h-5 w-5 text-[#333]" />
-      </button>
-
       {open && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
-          onClick={() => setOpen(false)}
+          className="fixed inset-0 bg-black/40 z-50 md:hidden"
+          onClick={close}
         />
       )}
 
       <aside
         className={`fixed inset-y-0 left-0 transform transition-transform duration-200
     ${open ? "translate-x-0" : "-translate-x-full"} 
-    md:translate-x-0 md:static z-40 
+    md:translate-x-0 md:static z-50 
     w-64 md:w-70 bg-white border-r border-[#ebebeb] h-screen flex flex-col justify-between px-4`}
       >
         <div className="p-4 pt-6 border-b border-[#ebebeb] h-20 flex items-center justify-between">
@@ -79,7 +70,7 @@ export default function Sidebar({
 
           <button
             aria-label="Close sidebar"
-            onClick={() => setOpen(false)}
+            onClick={close}
             className="md:hidden p-2 rounded hover:bg-gray-100"
           >
             <X className="h-5 w-5 text-[#333]" />
